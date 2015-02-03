@@ -1,0 +1,10 @@
+﻿<Window x:Class="ChatApplication.VoiceChat"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="VoiceChat" Height="300" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label x:Name="Caller_id" Content="sdf" HorizontalAlignment="Left" Margin="38,61,0,0" VerticalAlignment="Top" Height="34" Width="246"/>
+        <Label x:Name="Receiver_id" Content="fasf" HorizontalAlignment="Left" Margin="114,156,0,0" VerticalAlignment="Top" Width="77"/>
+
+    </Grid>
+</Window>
