@@ -1,0 +1,46 @@
+/* CSS Document for Mikael Myhrberg - portfolio */
+/* Since you are reading this you are propably interested in the code and know what you are looking at.
+This is the main CSS file for my portfolio. Since I used Bootstrap for this website, there isn't really much to write here regarding
+basic layout functions and such, only the definitions that make the site look like I want to such as the custom navbar 
+Why so many !important tags? - Because I needed to override the default Bootstrap theme in those areas
+*/
+
+body{
+}
+
+.carousel-caption > h1{
+  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black;  
+}
+.carousel-caption > h2{
+  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black; 
+}
+.carousel-caption > h3{
+  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black; 
+}
+.carousel-caption > p{
+  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black; 
+}
+
+nav{
+  margin-bottom: 0px !important;
+}
+
+.navbar-brand{
+  color: black !important;
+  margin-right: 50px !important;
+}
+
+#logout{
+  margin-top: 8px !important;
+  margin-bottom: 0px !important;
+}
+
+#textinput1{
+  resize: none;
+  height: 60px;
+}
+#sendbutton{
+  height: 60px;
+  width: 90%;
+  min-width: 80px;
+}
