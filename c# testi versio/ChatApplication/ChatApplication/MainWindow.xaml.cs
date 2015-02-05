@@ -11,9 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+//using System.Windows.Shapes;
 using System.Net;
 using System.IO;
+
 	
 		 
 	
@@ -30,6 +31,8 @@ namespace ChatApplication
         public MainWindow()
         {
             InitializeComponent();
+            //GetDropBoxPath();
+
             //WhosOnline();
 
             //this.Hide();
@@ -57,6 +60,22 @@ namespace ChatApplication
 
             return direction;
         }
+
+        public static string GetDropBoxPath()
+        {
+            var appDataPath = Environment.GetFolderPath(
+                                               Environment.SpecialFolder.ApplicationData);
+            var dbPath = Path.Combine(appDataPath, "Dropbox\\host.db");
+
+            if (!File.Exists(dbPath))
+                return null;
+
+            var lines = File.ReadAllLines(dbPath);
+            var dbBase64Text = Convert.FromBase64String(lines[1]);
+            var folderPath = Encoding.UTF8.GetString(dbBase64Text);
+
+            return folderPath;
+        }
         public void WhosOnline()
         {
             //lukee tekstitiedoston
@@ -64,7 +83,11 @@ namespace ChatApplication
             string user;
 
             //RadioButton[] button_array = new RadioButton[10];
-            System.IO.StreamReader file = new System.IO.StreamReader("c:\\Users\\Jispa\\Dropbox\\dropboxchatfiles\\WhosOnline.txt");
+            //System.IO.StreamReader file = new System.IO.StreamReader("c:\\Users\\Jispa\\Dropbox\\dropboxchatfiles\\WhosOnline.txt");
+            string filepath = GetDropBoxPath();
+            System.IO.StreamReader file = new System.IO.StreamReader(filepath + "\\DB\\WhosOnline.txt");
+            //System.IO.StreamReader file = new System.IO.StreamReader("c:\\Users\\Jispa\\Dropbox\\dropboxchatfiles\\WhosOnline.txt");
+           
             while ((user = file.ReadLine()) != null)
             {
                 
@@ -86,6 +109,44 @@ namespace ChatApplication
             caller = username;
             this.Title = "Logged in as " + username;
             WhosOnline();
+        }
+
+        public static string Indent(int count)
+        {
+            return "".PadLeft(count);
+        }
+        public void WriteToFile(string line)
+        {
+            //kirjoittaa tekstitiedostoon
+            string Now = DateTime.Now.ToString("<dd.MM.yy klo: HH:mm:ss >");
+            //string Now = "<" +DateTime.Now.ToShortDateString() + " klo: " + DateTime.Now.ToShortTimeString() + ">";
+            string date = Now.ToString() + Indent(3);
+            string filepath = GetDropBoxPath();
+            System.IO.StreamWriter file = new System.IO.StreamWriter(filepath + "\\DB\\chatlog.txt", true);
+            file.WriteLine(date + caller + ": " +line);
+            file.Close();
+
+        }
+
+        public void ReadFile()
+        {
+            //lukee tekstitiedoston
+            int counter = 0;
+            string line;
+            string filepath = GetDropBoxPath();
+            System.IO.StreamReader file = new System.IO.StreamReader(filepath +"\\DB\\chatlog.txt");
+            while ((line = file.ReadLine()) != null)
+            {
+                Chat_textbox.AppendText(line.Substring(25) + Environment.NewLine);
+                counter++;
+                Chat_textbox.ScrollToEnd();
+
+
+            }
+            file.Close();
+
+
+
         }
 
         private void mainWindow_Closed(object sender, EventArgs e)
@@ -118,6 +179,8 @@ namespace ChatApplication
                     }
                 }
 	        }
+
+
         
             
             
@@ -126,6 +189,21 @@ namespace ChatApplication
             //receiver = Online_list.
             //receiver = mainWindow.Online_list.Items.CurrentItem.ToString();
             
+        }
+
+        private void Send_button_Click(object sender, RoutedEventArgs e)
+        {
+            string line = Input_textbox.Text;
+            WriteToFile(line);
+            Input_textbox.Text = null;
+            Chat_textbox.Text = null;
+            ReadFile();
+        }
+
+        private void Chat_textbox_Loaded(object sender, RoutedEventArgs e)
+        {
+            ReadFile();
+            Input_textbox.Focus();
         }
     }
 }

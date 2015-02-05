@@ -9,9 +9,9 @@
                 <GradientStop Color="White" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <TextBox x:Name="Chat_textbox" HorizontalAlignment="Left" Height="184" Margin="32.2,37.8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="332.8" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Height="21.6" Margin="32.2,250.6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="332.8"/>
-        <Button Content="Send" HorizontalAlignment="Left" Height="21" Margin="396,267,0,0" VerticalAlignment="Top" Width="81"/>
+        <TextBox x:Name="Chat_textbox" HorizontalAlignment="Left" Height="184" Margin="32.2,37.8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="332.8" IsReadOnly="True" Loaded="Chat_textbox_Loaded" VerticalScrollBarVisibility="Visible"/>
+        <TextBox x:Name="Input_textbox" HorizontalAlignment="Left" Height="21.6" Margin="32.2,250.6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="332.8"/>
+        <Button x:Name="Send_button" Content="Send" HorizontalAlignment="Left" Height="21" Margin="396,267,0,0" VerticalAlignment="Top" Width="81" Click="Send_button_Click" IsDefault="True"/>
         <Button x:Name="Call_button" Content="Call" HorizontalAlignment="Left" Height="22" Margin="396,240,0,0" VerticalAlignment="Top" Width="80" Click="Call_button_Click"/>
         <StackPanel x:Name="Online_List" HorizontalAlignment="Left" Height="184" Margin="396,38,0,0" VerticalAlignment="Top" Width="100"/>
 
