@@ -6,19 +6,11 @@ Why so many !important tags? - Because I needed to override the default Bootstra
 */
 
 body{
+  min-width: 500px;
 }
 
-.carousel-caption > h1{
-  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black;  
-}
-.carousel-caption > h2{
-  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black; 
-}
-.carousel-caption > h3{
-  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black; 
-}
-.carousel-caption > p{
-  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black; 
+#main{
+  max-width: 1200px;
 }
 
 nav{
@@ -38,9 +30,64 @@ nav{
 #textinput1{
   resize: none;
   height: 60px;
+  width:88%;
+  margin-right:0px; 
+  float: left;
 }
+#sendimagebutton{
+  height: 60px;
+  width: 10%;
+  float: right;
+  min-width: 40px;
+}
+
 #sendbutton{
   height: 60px;
   width: 90%;
   min-width: 80px;
+}
+
+.jumbotron{
+ min-height: 400px;
+ max-height: 600px;
+ padding: 20px 30px !important;
+ overflow: scroll;
+}
+
+p.left{
+  float: left;
+  text-align: left;
+  background: light grey;
+  min-width: 60%;
+  padding: 10px;
+  border: 2px solid;
+  border-radius: 20px;
+  word-wrap:break-word;
+}
+p.right{
+  float: right;
+  text-align: right;
+  background: white;
+  min-width: 60%;
+  padding: 10px;
+  border: 2px solid;
+  border-radius: 20px;
+  word-wrap:break-word;
+}
+
+
+
+
+
+.carousel-caption > h1{
+  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black;  
+}
+.carousel-caption > h2{
+  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black; 
+}
+.carousel-caption > h3{
+  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black; 
+}
+.carousel-caption > p{
+  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black; 
 }
