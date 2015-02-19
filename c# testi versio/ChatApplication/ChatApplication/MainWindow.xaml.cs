@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 //using System.Windows.Shapes;
 using System.Net;
 using System.IO;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 	
 		 
@@ -76,7 +78,7 @@ namespace ChatApplication
 
             return folderPath;
         }
-        public void WhosOnline()
+        public void WhosOnline(string operation)
         {
             //lukee tekstitiedoston
             int counter = 0;
@@ -87,42 +89,63 @@ namespace ChatApplication
             string filepath = GetDropBoxPath();
             System.IO.StreamReader file = new System.IO.StreamReader(filepath + "\\DB\\WhosOnline.txt");
             //System.IO.StreamReader file = new System.IO.StreamReader("c:\\Users\\Jispa\\Dropbox\\dropboxchatfiles\\WhosOnline.txt");
-           
-            while ((user = file.ReadLine()) != null)
-            {
-                
-                if (user != caller)
-                {
-                    button_array[counter] = new RadioButton();
-                    button_array[counter].Content = user;
-                    Online_List.Children.Add(button_array[counter]);
-                    counter++;
-                }
+            
+            switch (operation)             
+            { 
+                case "Read":
+                    while ((user = file.ReadLine()) != null)
+                    {
 
+                        if (user != caller)
+                        {
+                            button_array[counter] = new RadioButton();
+                            button_array[counter].Content = user;
+                            Online_List.Children.Add(button_array[counter]);
+                            counter++;
+                        }
+                    }
+                    file.Close();
+                    break;
+                case "Delete":
+                    while ((user = file.ReadLine()) != null)
+                    {
+                        if (user == caller)
+                        {
+                            
+                        }
+                    }
+                    break;
+                    
 
             }
-            file.Close();
+
+            
         }
        
         public void Login(string username)
         {
             caller = username;
             this.Title = "Logged in as " + username;
-            WhosOnline();
+            WhosOnline("Read");
+            string filepath = GetDropBoxPath();
+            System.IO.StreamWriter file = new System.IO.StreamWriter(filepath + "\\DB\\WhosOnline.txt", true);
+            file.WriteLine(caller);
+            file.Close();
+            
         }
 
         public static string Indent(int count)
         {
             return "".PadLeft(count);
         }
-        public void WriteToFile(string line)
+        public void WriteToFile(string line, string filename)
         {
             //kirjoittaa tekstitiedostoon
             string Now = DateTime.Now.ToString("<dd.MM.yy klo: HH:mm:ss >");
             //string Now = "<" +DateTime.Now.ToShortDateString() + " klo: " + DateTime.Now.ToShortTimeString() + ">";
             string date = Now.ToString() + Indent(3);
             string filepath = GetDropBoxPath();
-            System.IO.StreamWriter file = new System.IO.StreamWriter(filepath + "\\DB\\chatlog.txt", true);
+            System.IO.StreamWriter file = new System.IO.StreamWriter(filepath + filename, true);
             file.WriteLine(date + caller + ": " +line);
             file.Close();
 
@@ -194,7 +217,8 @@ namespace ChatApplication
         private void Send_button_Click(object sender, RoutedEventArgs e)
         {
             string line = Input_textbox.Text;
-            WriteToFile(line);
+            string filename = "\\DB\\chatlog.txt";
+            WriteToFile(line,  filename);
             Input_textbox.Text = null;
             Chat_textbox.Text = null;
             ReadFile();
