@@ -3,12 +3,12 @@
    Author=viestin lisääjä, gravatar=käyttäjän kuva, text=viesti */
 class ChatLine extends ChatBase{
 	
-	protected $text = '', $author = '', $gravatar = '';
+	protected $text = '', $author = '', $gravatar = '', $group = '';
 	
 	public function save(){
 		//sql kysely:
 		DB::query("
-			INSERT INTO webchat_lines (author, gravatar, text)
+			INSERT INTO 'group' (author, gravatar, text)
 			VALUES (
 				'".DB::esc($this->author)."',
 				'".DB::esc($this->gravatar)."',

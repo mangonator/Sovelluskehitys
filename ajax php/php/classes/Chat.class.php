@@ -76,6 +76,7 @@ class Chat{
 		
 		//Lisätään uusi rivi chattiin
 		$chat = new ChatLine(array(
+			'group' 	=> $_SESSION['user']['group'],
 			'author'	=> $_SESSION['user']['name'],
 			'gravatar'	=> $_SESSION['user']['gravatar'],
 			'text'		=> $chatText
@@ -99,7 +100,7 @@ class Chat{
 		
 		// Poistetaan 5 minuuttia vanhemmat viestit ja inaktiiviset käyttäjät
 		
-		DB::query("DELETE FROM webchat_lines WHERE ts < SUBTIME(NOW(),'0:5:0')");
+		DB::query("DELETE FROM 'group' WHERE ts < SUBTIME(NOW(),'0:5:0')");
 		DB::query("DELETE FROM webchat_users WHERE last_activity < SUBTIME(NOW(),'0:0:30')");
 		
 		$result = DB::query('SELECT * FROM webchat_users ORDER BY name ASC LIMIT 18');
@@ -137,6 +138,15 @@ class Chat{
 		}
 	
 		return array('chats' => $chats);
+	}
+	public static function createGroup($groupName){
+		$result = DB::query(CREATE TABLE `$groupName` (
+					id int(10) unsigned NOT NULL auto_increment PRIMARY KEY,
+					author varchar(16) NOT NULL,
+					gravatar varchar(32) NOT NULL,
+					text varchar(255) NOT NULL,
+					ts timestamp NOT NULL default CURRENT_TIMESTAMP KEY,					
+					)
 	}
 	
 	//gravatar hashit

@@ -55,6 +55,10 @@ try{
 		case 'getChats':
 			$response = Chat::getChats($_GET['lastID']);
 		break;
+		//Luo ryhmä
+		case 'createGroup':
+			$response = Chat::createGroup($_POST['groupName']);
+		break;
 		
 		default:
 			throw new Exception('Wrong action');
