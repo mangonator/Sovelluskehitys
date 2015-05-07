@@ -1,0 +1,154 @@
+/* CSS Document for Mikael Myhrberg - portfolio */
+/* Since you are reading this you are propably interested in the code and know what you are looking at.
+This is the main CSS file for my portfolio. Since I used Bootstrap for this website, there isn't really much to write here regarding
+basic layout functions and such, only the definitions that make the site look like I want to such as the custom navbar 
+Why so many !important tags? - Because I needed to override the default Bootstrap theme in those areas
+*/
+
+body{
+  min-width: 500px;
+  background-image: url("../images/brushed_@2X.png");
+  background-repeat: repeat;
+  background-position: center bottom;
+}
+
+#main{
+  max-width: 1200px;
+}
+
+nav{
+  margin-bottom: 0px !important;
+}
+
+.navbar-brand{
+  color: black !important;
+  margin-right: 50px !important;
+}
+
+#loginbar{
+  margin-top:10px;
+}
+
+#logoutbar{
+  margin-right: 10px;
+}
+
+#logout{
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+#textinput1{
+  resize: none;
+  height: 60px;
+  width:88%;
+  margin-right:0px; 
+  float: left;
+}
+#sendimagebutton{
+  height: 60px;
+  width: 10%;
+  float: right;
+  min-width: 40px;
+}
+
+#sendbutton{
+  height: 60px;
+  width: 90%;
+  min-width: 80px;
+}
+
+.jumbotron{
+ min-height: 400px;
+ max-height: 600px;
+ padding: 20px 30px !important;
+ overflow: scroll;
+ background-color: white !important;
+ border-top: 2px #404040 solid;
+}
+
+p.left{
+  float: left;
+  text-align: left;
+  background: light grey;
+  min-width: 60%;
+  padding: 10px;
+  border: 2px solid;
+  border-radius: 20px;
+  word-wrap:break-word;
+}
+p.right{
+  float: right;
+  text-align: right;
+  background: white;
+  min-width: 60%;
+  padding: 10px;
+  border: 2px solid;
+  border-radius: 20px;
+  word-wrap:break-word;
+}
+
+p.image-right{
+  min-width: 0% !important;
+  margin-left: 50%;
+}
+
+p.image-left{
+  min-width: 0% !important;
+  margin-right: 50%;
+}
+
+p > img{
+  width: 300px;
+}
+
+small.time{
+  float: right;
+  font-size: 60%;
+  margin-top: 7px;
+}
+
+small.time-right{
+  float: left;
+  font-size: 60%;
+  margin-top: 7px;
+}
+
+small.orange{
+  color: orange;
+  font-weight: bold;
+}
+
+#logotext{
+  margin-top: 0px;
+  color: orange;
+}
+#logotext > span{
+  margin-top: 0px;
+  color: grey;
+}
+
+#statusBox{
+  padding-left: 0px !important;
+}
+
+#statusList > li{
+  font-size: 110%;
+  font-weight: bold;
+}
+
+
+
+
+.carousel-caption > h1{
+  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black;  
+}
+.carousel-caption > h2{
+  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black; 
+}
+.carousel-caption > h3{
+  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black; 
+}
+.carousel-caption > p{
+  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black; 
+}
